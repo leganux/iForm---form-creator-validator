@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejemplo de nueva página para GOB.mx</title>
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link href="foundation/css/foundation.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+</head>
+<body>
+<br>
+<br>
+<br>
+<main class="page">
+    <div class="container">
+        <div class="row">
+            <div class="columns small-12">
+                <h3> HELLO </h3>
+                <hr class="red">
+            </div>
+            <div class="columns small-8 " id="SPACE">
+            </div>
+            <div class="columns small-4 ">
+                <button id="validate" class="success button">
+                    Validate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+</main>
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="foundation/js/vendor/foundation.js"></script>
+<script src="iForm.js?v1.0.0.5"></script>
+<script>
+
+    var Options = {
+        formClass: 'form-group',
+        formMethod: 'POST',
+        enctype: 'multipart/form-data',
+        action: '#',
+        separator: '<br>',
+        textForSelect: 'Selecciona...',
+        textsErr: {
+            ErrMaxSize: 'El tama&ntilde;o del archivo es mayor a _XX_ MB',
+            ErrFileAccept: 'El archivo seleccionado  no es un archivo valido  _XX_  ',
+            ErrMandatory: 'Este campo es obligatorio',
+            ErrUnique: 'La informacion  ya se encuentra  en otro campo',
+            ErrPatternAlph: 'Solo se permiten alphanumericos',
+            ErrPatternNumeric: 'Solo se permiten numericos',
+            ErrPattern: 'La informacion  no cincide con el patron',
+            ErrMinLength: 'El contenido por lo menos debe tener _XX_ caracteres de longitud',
+            ErrMaxLength: 'El contenido por lo mucho debe tener _XX_ caracteres de longitud',
+            ErrMinNum: 'El numero es menor a _XX_ ',
+            ErrMaxNum: 'El numero es mayor a  _XX_ ',
+            ErrIncludes: 'El contenido no incluye  _XX_ ',
+            ErrPass: 'El formato de contraseña es incorrecto ',
+            ErrPDF: 'El archivo no es PDF o se encuentra dañado',
+        }
+    };
+    var Form1 = {};
+    var myForm = [];
+    $.getJSON('./myformReal.json', {}, function (data) {
+        $.each(data, function (i, item) {
+            if (item.iCvetipoCampo === 7) {
+                var sixe = 10;
+                if (item.iTamArchivo && item.iTamArchivo !== 0) {
+                    sixe = item.iTamArchivo;
+                }
+                var Tipx = '.pdf';
+                if (item.cTipoArchivo && item.cTipoArchivo !== 'null') {
+                    Tipx = item.cTipoArchivo;
+                }
+                var inner = {
+                    "id": item.cCampo,
+                    "tooltip": "Ingresa la informacion que se solicita",
+                    "label": item.cEtiqueta,
+                    "class": "form-control-file",
+                    "type": "file",
+                    "maxtam": sixe,
+                    "accept": Tipx,
+                    "mandatory": true,
+                    "unique": true,
+                    "name": item.cCampo,
+                    "pattern": "alphanumeric",
+                    "options": {
+                        "validateOn": [
+                            "Change"
+                        ],
+                        "skipUntilEndValidation": [
+                            "mandatory"
+                        ],
+                        "getDataAs": "b64"
+                    }
+                };
+                myForm.push(inner);
+            }
+        });
+        Form1 = new iForm('#SPACE', myForm, Options);
+        Form1.drawForm();
+        Form1.inicialize(function (e) {
+            alert('error wey !!! ' + e);
+        }, null);
+    });
+
+    $('#validate').click(function () {
+        console.log(Form1.validate());
+    })
+
+    // Form1.drawSubmit('Enviar', 'btn btn-danger', 'submitelement', true);
+
+    // Form1.disableElement('id:req7');
+    // Form1.enableElement('id:req7');
+    // var XX_ = Form1.getElementAsSelector('id:req7')
+    // var MyForm = Form1.getFormAsSelector();
+
+</script>
+
+</body>
+</html>

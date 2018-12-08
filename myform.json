@@ -1,0 +1,103 @@
+[
+  {
+    "id": "ooo",
+    "label": "Mete el Password",
+    "class": "form-control",
+    "type": "password",
+    "mandatory": true,
+    "unique": true,
+    "name": "req5",
+    "style": "",
+    "minLength": 0,
+    "maxLength": 10,
+    "placeholder": "Mete algo",
+    "minNumEspChar": 1,
+    "minNumAlph": 1,
+    "minNumNum": 1,
+    "options": {
+      "disableCopyPaste": true,
+      "validateOn": [
+        "keyUp"
+      ],
+      "skipUntilEndValidation": [
+        "mandatory"
+      ],
+      "skipAtEndValidation": [
+        "pattern"
+      ],
+      "forceLimits": true,
+      "toUpperCase": false,
+      "toLowerCase": true
+    }
+  },
+  {
+    "id": "req1",
+    "label": "Un requisito",
+    "class": "form-control",
+    "type": "file",
+    "maxtam": "1",
+    "accept": ".pdf",
+    "mandatory": true,
+    "unique": true,
+    "name": "req1",
+    "style": "",
+    "pattern": "alphanumeric",
+    "attrib": "",
+    "placeholder": "Inserta Datos ",
+    "options": {
+      "validateOn": [
+        "Change"
+      ],
+      "skipUntilEndValidation": [
+        "mandatory"
+      ],
+      "getDataAs": "b64"
+    }
+  },
+  {
+    "id": "req2",
+    "label": "Requisito 2",
+    "class": "form-control",
+    "type": "file",
+    "maxtam": "10",
+    "accept": ".pdf",
+    "mandatory": true,
+    "unique": true,
+    "name": "req1",
+    "style": "",
+    "attrib": "",
+    "placeholder": "Inserta Datos ",
+    "options": {
+      "validateOn": [
+        "Change"
+      ],
+      "skipUntilEndValidation": [
+        "mandatory"
+      ],
+      "getDataAs": "text"
+    }
+  },
+  {
+    "id": "req3",
+    "label": "Requisito 3",
+    "class": "form-control",
+    "type": "file",
+    "maxtam": "10",
+    "accept": ".xls",
+    "mandatory": true,
+    "unique": true,
+    "name": "req1",
+    "style": "",
+    "attrib": "",
+    "placeholder": "Inserta Datos ",
+    "options": {
+      "validateOn": [
+        "Change"
+      ],
+      "skipUntilEndValidation": [
+        "mandatory"
+      ],
+      "getDataAs": "text"
+    }
+  }
+]

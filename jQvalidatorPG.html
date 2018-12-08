@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejemplo de nueva página para GOB.mx</title>
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.2.2/ie8.js"></script>
+</head>
+<body>
+<br>
+<br>
+<br>
+<main class="page">
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12" id="SPACE">
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</main>
+<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="iForm.js?v1.0.0.4"></script>
+<script>
+
+    var JSONFORM = [];
+    /*  JSONFORM.push({
+
+          id: 'req1',//ya
+          label: 'Un requisito',//ya
+          class: 'form-control',//ya
+          type: 'file',
+          maxtam: '1',
+          accept: '.pdf',
+          mandatory: true,
+          unique: true,
+          name: 'req1',//ya
+          style: '',//ya
+          //pattern: /[^a-z\d]/i,
+          pattern: 'alphanumeric',
+          attrib: '',//ya
+          placeholder: 'Inserta Datos ',
+
+          options: {
+              validateOn: ['Change'],
+              skipUntilEndValidation: ['mandatory'],
+              getDataAs: 'text'
+          }
+
+      });
+
+
+      JSONFORM.push({
+        id: 'req10',//ya
+        label: 'Un requisito',//ya
+        class: 'form-control',//ya
+        type: 'select',
+        items: [
+            {text: 'China'},
+            {value: 5, text: 'Mexico'},
+            {value: 3, text: 'Canada'},
+            {value: 7, text: 'Colombia'},
+            {value: 6, text: 'USA'},
+            {value: 8, text: 'Inglaterra'},
+            {value: 9, text: 'Argentina'}
+        ],
+        mandatory: true,
+        unique: true,
+        name: 'req10',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    });
+
+      JSONFORM.push({
+        id: 'req2',
+        label: 'Ingresa un texto ',
+        class: 'form-control',
+        type: 'text',
+        // includes: 'thing',
+        mandatory: true,
+        unique: true,
+        name: 'req2',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 100,
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                forceLimits: true,
+                matchTo: 'id:req3',
+                matchToText: 'No coincide el campoa',
+                toUpperCase: true,
+                toLowerCase: false
+            }
+    });
+
+JSONFORM.push({
+        id: 'req4',
+        class: 'form-control',
+        type: 'number',
+        label: 'Inserta un numero ',
+        includes: 3,
+        mandatory: false,
+        unique: true,
+        name: 'req4',
+        style: '',
+        pattern: '',
+        minLength: 1,
+        maxLength: 10,
+        minNumber: 0,
+        maxNumber: 100,
+        numberOfDecimals: 0,
+        options: {
+            validateOn: ['keyUp'],
+            skipUntilEndValidation: ['mandatory'],
+            forceLimits: true,
+            // matchTo: 'id:req3',
+            toUpperCase: true,
+            toLowerCase: false,
+            getDataAs: 'text'
+        }
+    });
+
+
+    JSONFORM.push({
+        id: 'req5',
+        label: 'texto grande',
+        class: 'form-control',
+        type: 'textarea',
+        rows: 5,
+        includes: '',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 10,
+        placeholder: 'Mete algo',
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: true,
+                toLowerCase: false
+            }
+    });
+  */
+
+    JSONFORM.push({
+        id: 'req10',//ya
+        label: 'Un pais',//ya
+        class: '',//ya
+        type: 'radio',
+        items: [
+            {id: 'sangre', text: 'China'},
+            {value: 5, text: 'Mexico'},
+            {value: 3, text: 'Canada'},
+            {value: 7, text: 'Colombia'},
+            {value: 6, text: 'USA'},
+            {value: 8, text: 'Inglaterra'},
+            {value: 9, text: 'Argentina'}
+        ],
+        itemSepartor: '<br>',
+        mandatory: true,
+        unique: true,
+        name: 'rb1',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    });
+
+    JSONFORM.push({
+        id: 'req105',//ya
+        label: 'Una o muchas inportaciones',//ya
+        class: '',//ya
+        type: 'checkbox',
+        items: [
+            {id: 'oko', text: 'Cebolla'},
+            {value: 5, text: 'pera'},
+            {value: 3, text: 'Chia'},
+            {value: 7, text: 'Manzana'},
+            {value: 6, text: 'limon'},
+            {value: 8, text: 'lechuga'},
+            {value: 9, text: 'Durazno'}
+        ],
+        itemSepartor: '<br>',
+        mandatory: true,
+        unique: true,
+        name: 'ch2',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    });
+
+
+    JSONFORM.push({
+        id: 'req78',
+        label: 'Selecciona el valor del rango',
+        type: 'range',
+        name: 'req5',
+        style: '',
+        min: 0,
+        max: 100,
+        options:
+            {
+                validateOn: ['Change'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+            }
+    });
+
+    JSONFORM.push({
+        id: 'req73',
+        label: 'Mete el tiempo',
+        placeholder: 'Mete el tiempo',
+        class: 'form-control',
+        type: 'time',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minTime: '00:15',
+        maxTime: '18:00',
+        options:
+            {
+                validateOn: ['Change'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+            }
+    });
+
+    JSONFORM.push({
+        id: 'req70',
+        label: 'Mete la fecha',
+        placeholder: 'Mete el correo',
+        class: 'form-control',
+        type: 'date',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minDate: '2015-05-06',
+        maxDate: '2019-10-12',
+        options:
+            {
+                validateOn: ['Change'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+            }
+    });
+
+    JSONFORM.push({
+        id: 'req7',
+        label: 'Mete el correo',
+        placeholder: 'Mete el correo',
+        class: 'form-control',
+        type: 'email',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minLength: 0,
+        maxLength: 10,
+
+        options:
+            {
+                disableCopyPaste: true,
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: false,
+                toLowerCase: true
+            }
+    });
+
+    JSONFORM.push({
+        id: 'req9',
+        label: 'Selecciona un color',
+        class: 'form-control',
+        type: 'color',
+        mandatory: true,
+        name: 'req95',
+        style: '',
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: false,
+                toLowerCase: true
+            }
+    });
+
+
+    var Options = {
+        formClass: 'form-group',
+        formMethod: 'POST',
+        colorRange: '#000',
+        enctype: 'multipart/form-data',
+        action: '#',
+        separator: '<br>',
+        textForSelect: 'Selecciona...',
+        textsErr: {
+            ErrMaxSize: 'El tama&ntilde;o del archivo es mayor a _XX_ MB',
+            ErrFileAccept: 'El formato _XX_ es incorrecto o no es un archivo valido',
+            ErrMandatory: 'Este campo es obligatorio',
+            ErrUnique: 'La informacion  ya se encuentra  en otro campo',
+            ErrPatternAlph: 'Solo se permiten alphanumericos',
+            ErrPatternNumeric: 'Solo se permiten numericos',
+            ErrPattern: 'La informacion  no cincide con el patron',
+            ErrMinLength: 'El contenido por lo menos debe tener _XX_ caracteres de longitud',
+            ErrMaxLength: 'El contenido por lo mucho debe tener _XX_ caracteres de longitud',
+            ErrMinNum: 'El numero es menor a _XX_ ',
+            ErrMaxNum: 'El numero es mayor a  _XX_ ',
+            ErrIncludes: 'El contenido no incluye  _XX_ ',
+            ErrPass: 'El formato de contraseña es incorrecto ',
+            ErrMail: 'El formato de mail es incorrecto ',
+            ErrMinDate: 'la fecha debe ser superior a _XX_ ',
+            ErrMaxDate: 'la fecha debe ser inferior a _XX_ ',
+            ErrMinTime: 'el tiempo  debe ser superior a _XX_ ',
+            ErrMaxTime: 'el tempo debe ser inferior a _XX_ ',
+        }
+    };
+
+
+    var Form1 = new iForm('#SPACE', JSONFORM, Options);
+    Form1.drawForm();
+    // Form1.drawSubmit('Enviar', 'btn btn-danger', 'submitelement', true);
+    Form1.inicialize();
+    // Form1.disableElement('id:req7');
+    // Form1.enableElement('id:req7');
+    // var XX_ = Form1.getElementAsSelector('id:req7')
+    var MyForm = Form1.getFormAsSelector();
+</script>
+
+</body>
+</html>

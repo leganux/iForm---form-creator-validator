@@ -1,0 +1,40 @@
+[
+  {
+    "iCveCampo": 0,
+    "iLargo": 0,
+    "iCvetipoCampo": 7,
+    "lMandatorio": 1,
+    "lFijo": 0,
+    "lEncabezado": 0,
+    "lSeleccionar": 0,
+    "cCampo": "cReq22",
+    "cEtiqueta": "Escrito libre, deberá incluir lo señalado en la normatividad vigente",
+    "cTabla": "",
+    "cCve": "",
+    "cDsc": "",
+    "cLigado": "",
+    "cScript": "",
+    "cTipoArchivo": ".csv",
+    "iTamArchivo": 10,
+    "iTienePNC": 0
+  },
+  {
+    "iCveCampo": 0,
+    "iLargo": 0,
+    "iCvetipoCampo": 7,
+    "lMandatorio": 1,
+    "lFijo": 0,
+    "lEncabezado": 0,
+    "lSeleccionar": 0,
+    "cCampo": "cReq304",
+    "cEtiqueta": "Recibo del pago de derechos correspondiente, conforme a la Ley Federal de Derechos vigente",
+    "cTabla": "",
+    "cCve": "",
+    "cDsc": "",
+    "cLigado": "",
+    "cScript": "",
+    "cTipoArchivo": ".pdf",
+    "iTamArchivo": 10,
+    "iTienePNC": 0
+  }
+]

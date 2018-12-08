@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejemplo de nueva página para GOB.mx</title>
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link href="foundation/css/foundation.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .codeHTML {
+            background-color: #e1e1e1;
+            color: black;
+            border: 1px solid #898989;
+            padding: 1px;
+
+        }
+
+        .codeJS {
+            background-color: #bcd3e1;
+            color: black;
+            border: 1px solid #898989;
+            padding: 2px;
+            margin: 2px;
+            text-align: center;
+            align-content: center;
+        }
+    </style>
+</head>
+<body>
+<main class="page">
+    <div class="container">
+        <div class="row">
+            <div class="columns medium-8">
+                <br>
+                <h2>iForm - form creator &amp; validator </h2>
+                <h3> For jQuery &amp; Zurb Foundation framework </h3>
+                <h4>Documentation</h4>
+                <hr class="red">
+                <p align="justify">
+                    In this documentation you will find all the information to know how to use the <b>iForm</b>
+                    pluguin developed for leganux.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="columns medium-8">
+                <h4 id="about">About</h4>
+                <hr class="red">
+
+                <p align="justify">
+                    The <b>iForm</b> plugin was developed by Angel Erick Cruz Olivera in JS using the ES5 and ES6
+                    standar, the end of the develop of this project was on
+                    July 2018, the actual version is 1.0.0.2.
+                </p>
+
+
+                <p align="justify">
+                    <b> iForm</b> allows you create adaptativee an functional forms for web applications that
+                    uses <b>fundation</b> as framework, the forms you will create in it also includes the most important
+                    validations to make easiest the way you control all the validations coming from a JSON
+                    configuration. This Plugin help you as developer to write less code and permit that the final user
+                    sees all the application estandarized. To get the best UX as result.
+                </p>
+
+                <p align="right">
+                    <b> Enjoy it! </b>
+                    <br>
+                    Erick Cruz
+                </p>
+                <br>
+
+                <h4 id="dependences">Dependences</h4>
+                <hr class="red">
+                <p align="justify">
+                    <b> iForm</b> need a third party elements to work fine. Yo must to include them in your page before
+                    start using it.
+                <ul>
+                    <li>
+                        <b> jQuery 3.0.0.+ </b> <a href="https://jquery.com"> <i class="fa fa-fw fa-external-link"
+                    ></i> </a>
+                    </li>
+                    <li>
+                        Last version of production ambient of <b> foundation </b> framework <a
+                            href="https://foundation.zurb.com"> <i class="fa fa-fw fa-external-link"
+                    ></i> </a>
+                    </li>
+                </ul>
+                </p>
+                <br>
+                <br>
+                <h4 id="getstarted">Getting Started</h4>
+                <hr class="red">
+
+                <p align="justify">
+                    After you shure you include the dependences os this project you must to include the JS library in
+                    your project before <b> body </b> tag closes.
+                </p>
+
+                <xmp class="codeHTML">
+                    <script src="iForm.js?v1.0.0.4"></script>
+                </xmp>
+
+                <p align="justify">
+                    Now you must to create a div element in the body of your html file and asign to it an unique id
+                    because in this place the form will be located.
+                </p>
+                <xmp class="codeHTML">
+                    <div id="MyForm1"></div>
+                </xmp>
+
+                <p align="justify">
+                    Now in your JS app code you must to inicialice a new instance of the iForm Object, you'll need 2
+                    JSON objects and the id selector of the div you create before.
+                    <br>
+                    <br>
+                    <b>Wait don't worry... </b>In the next topics of this documentation you'll learn how to create the
+                    form and options JSONs.
+                </p>
+                <pre>
+                <code>
+                    var optionsJSON = {};
+                    var formJSON = {};
+                    var Form1 = new iForm('#MyForm1', formJSON, optionsJSON);
+                </code>
+</pre>
+                <p align="justify">
+                    <b>Parameters</b>
+                <ul>
+                    <li><b>idSelector</b>[HTML] (mandatory) - Space where form will be located</li>
+                    <li><b>ArrayForm</b>[JSON] (mandatory - Must to have at least 1 element) - Array JSON Object with
+                        the
+                        description of all field of form.
+                    </li>
+                    <li><b>Options</b>[JSON] (optional) - JSON Object with
+                        the
+                        options of form in general
+                    </li>
+
+                </ul>
+                <br>
+                <b>Returns</b>
+                <br>
+                iForm object with all its properties.
+                </p>
+
+                <br>
+                <br>
+                <h4 id="options">Options
+                    <small> [JSON] (optional)</small>
+                </h4>
+                <hr class="red">
+                <p align="justify">
+                    The JSON options parameter allows you configure the form element <b>iForm</b> wil create, it could
+                    includes the action, the encode method, and some texts for errors.
+                    <br>
+                    <br>
+                <h5>Example</h5>
+
+
+                <pre>
+                <code style="font-size: x-small">
+                    var Options = {
+                    formClass: 'form-group',
+                    formMethod: 'POST',
+                    enctype: 'multipart/form-data',
+                    action: '#',
+                    separator: '< br >',
+                    textForSelect: 'Selecciona...',
+                    textsErr: {
+                    ErrMaxSize: 'El tama&ntilde;o del archivo es mayor a _XX_ MB',
+                    ErrFileAccept: 'El formato _XX_ es incorrecto o no es un archivo valido',
+                    ErrMandatory: 'Este campo es obligatorio',
+                    ErrUnique: 'La informacion  ya se encuentra  en otro campo',
+                    ErrPatternAlph: 'Solo se permiten alphanumericos',
+                    ErrPatternNumeric: 'Solo se permiten numericos',
+                    ErrPattern: 'La informacion  no cincide con el patron',
+                    ErrMinLength: 'El contenido por lo menos debe tener _XX_ caracteres de longitud',
+                    ErrMaxLength: 'El contenido por lo mucho debe tener _XX_ caracteres de longitud',
+                    ErrMinNum: 'El numero es menor a _XX_ ',
+                    ErrMaxNum: 'El numero es mayor a  _XX_ ',
+                    ErrIncludes: 'El contenido no incluye  _XX_ ',
+                    ErrPass: 'El formato de contraseña es incorrecto ',
+                    }
+                    };
+
+                </code>
+            </pre>
+
+                <br>
+                <br>
+                <ul>
+                    <li><b>formClass</b>
+                        <i>(String)[form-group, userdefined] The class or classes you wanna stablish in your form (if
+                            youre working
+                            with
+                            gob.mx you mut to stablish 'form-group').
+                        </i>
+                    </li>
+                    <li><b>formMethod</b>
+                        <i>(string)[POST,PUT,GET,DELETE,UPDATE] The method you use for send the request across HTTP.
+                        </i>
+                    </li>
+                    <li><b>enctype</b>
+                        <i>(string)[multipart/form-data,application/x-www-form-urlencoded,text/plain] The encoding type
+                            you use for send the request across HTTP.
+                        </i>
+                    </li>
+                    <li><b>action</b>
+                        <i>(string)[userdefined] The endpoint for the HTTP request.
+                        </i>
+                    </li>
+                    <li><b>separator</b>
+                        <i>(string)[userdefined , HTML] The html content to separate fields one of each other.
+                        </i>
+                    </li>
+                    <li><b>textForSelect</b>
+                        <i>(string)[userdefined] Placeholder in select type field.
+                        </i>
+                    </li>
+                    <li><b>textsErr</b>
+                        <i>(JSON)[OBJECT] JSON node with user defined error texts for every validation.
+                        </i>
+                        <ul>
+                            <li><b>ErrMaxSize</b>
+                                <i>(string)[userdefined] Text for error in validation max file sise. ('_XX_' will be
+                                    replaced by
+                                    number of size config by field )
+                                </i>
+                            </li>
+                            <li><b>ErrFileAccept</b>
+                                <i>(string)[userdefined] Text for error in validation file type. ('_XX_' will be
+                                    replaced by
+                                    number of size config by field )
+                                </i>
+                            </li>
+                            <li><b>ErrMandatory</b>
+                                <i>(string)[userdefined] Text for error in mandatory field.
+                                </i>
+                            </li>
+                            <li><b>ErrUnique</b>
+                                <i>(string)[userdefined] Text for error in repited field if unique.
+                                </i>
+                            </li>
+                            <li><b>ErrPatternAlph</b>
+                                <i>(string)[userdefined] Text for error only alphanumeric permited.
+                                </i>
+                            </li>
+                            <li><b>ErrPatternNumeric</b>
+                                <i>(string)[userdefined] Text for error only numeric permited.
+                                </i>
+                            </li>
+                            <li><b>ErrPattern</b>
+                                <i>(string)[userdefined] Text for error for pattern not match.
+                                </i>
+                            </li>
+                            <li><b>ErrMinLength</b>
+                                <i>(string)[userdefined] Text for error min length.('_XX_' will be
+                                    replaced by
+                                    number of length config by field )
+                                </i>
+                            </li>
+                            <li><b>ErrMaxLength</b>
+                                <i>(string)[userdefined] Text for error min length.('_XX_' will be
+                                    replaced by
+                                    number of length config by field )
+                                </i>
+                            </li>
+                            <li><b>ErrMinNum</b>
+                                <i>(string)[userdefined] Text for error min number.('_XX_' will be
+                                    replaced by
+                                    number of number config by field )
+                                </i>
+                            </li>
+                            <li><b>ErrMaxNum</b>
+                                <i>(string)[userdefined] Text for error min number.('_XX_' will be
+                                    replaced by
+                                    number of number config by field )
+                                </i>
+                            </li>
+                            <li><b>ErrIncludes</b>
+                                <i>(string)[userdefined] Text for error in content must to include.('_XX_' will be
+                                    replaced by
+                                    number of number config by field )
+                                </i>
+                            <li><b>ErrPass</b>
+                                <i>(string)[userdefined] Text for error in password format incorrect.('_XX_' will be
+                                    replaced by
+                                    number of number config by field )
+                                </i>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                </p>
+                <br>
+                <br>
+                <h4 id="form">Form Components
+                    <small> [JSON] (Madatory)</small>
+                </h4>
+                <hr class="red">
+                <p align="justify">
+                    This is a JSON object that includes all the directions to build the fields and components for your
+                    form you can create the next type of fields automatically
+                <ol>
+                    <li>File</li>
+                    <li>Text</li>
+                    <li>Textarea</li>
+                    <li>Select</li>
+                    <li>Password</li>
+                    <li>Number</li>
+                </ol>
+                <br>
+                Now you gonna see how to build each of those type of input fields. You can create an empty array and add
+                the fields dinamically using the push function using JS.
+                <br>
+                <br>
+                <pre><code style="font-size: small">
+                    var JSONFORM = [];
+                    JSONFORM.push({
+                    id: 'req1',
+                    label: 'Un requisito',
+                    class: 'form-control',
+                    type: 'file',
+                    maxtam: '1',
+                    accept: '.pdf'
+                    ...
+                    });
+                </code></pre>
+                </p>
+
+
+                <!-- Satrt TEXT FIELD-->
+                <br>
+                <br>
+                <h4 id="CText">Component:Text </h4>
+                <hr class="red">
+                <p align="justify">
+                    To build a text form you can see the next example.
+                </p>
+                <pre><code>
+                    {
+                    id: 'req2',
+                    label: 'Ingresa un texto ',
+                    class: 'form-control',
+                    type: 'text',
+                    includes: 'thing',
+                    mandatory: true,
+                    unique: true,
+                    name: 'req2',
+                    style: '',
+                    pattern: '',
+                    minLength: 5,
+                    maxLength: 100,
+                    options:
+                    {
+                    validateOn: ['keyUp'],
+                    skipUntilEndValidation: ['mandatory'],
+                    forceLimits: true,
+                    matchTo: 'id:req3',
+                    matchToText: 'No coincide el campoa',
+                    toUpperCase: true,
+                    toLowerCase: false
+                    }
+                    }
+                </code></pre>
+                <br>
+                <br>
+                <ul>
+                    <li><b>id:</b>
+                        <i>[string](optional/Unique)</i> The HTML id for the object in the DOM, This must be UNIQE.
+                    </li>
+                    <li><b>label:</b>
+                        <i>[string](mandatory)</i> The HTML label for this field.
+                    </li>
+                    <li><b>class:</b>
+                        <i>[string](optional)</i> The HTML class for this field.('form-control' must to be used if you
+                        use gob.mx framework)
+                    </li>
+                    <li><b>placeholder:</b>
+                        <i>[number](optional)</i> Text to show in field before you set content
+                    </li>
+                    <li><b>type:</b>
+                        <i>[string](mandatory)[text,file,password,select,textarea,number]</i> The type of field you want
+                        to build.
+                    </li>
+                    <li><b>includes:</b>
+                        <i>[string](optional)</i> If the text you imput must to include a part of tis value.
+                    </li>
+                    <li><b>mandatory:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is mandatory.
+                    </li>
+                    <li><b>unique:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is unique.
+                    </li>
+                    <li><b>name:</b>
+                        <i>[string](optional)</i> The HTML name for this field
+                    </li>
+                    <li><b>style:</b>
+                        <i>[string](optional)</i> The HTML style for this field
+                    </li>
+                    <li><b>pattern:</b>
+                        <i>[string](optional) [number,alphanumeric,regexp]</i> The HTML style for this field
+                    </li>
+                    <li><b>minLength:</b>
+                        <i>[number](optional) </i> The min length filed must be.
+                    </li>
+                    <li><b>maxLength:</b>
+                        <i>[number](optional) </i> The max length filed must be..
+                    </li>
+                    <li><b>options:</b>
+                        <ul>
+                            <li>
+                                <b>validateOn:</b>
+                                <i>[array](optional)['keyUp','keyDown','Click','Change'] </i> the event or events that
+                                trigger the validation.
+                            </li>
+                            <li>
+                                <b>skipUntilEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength','maxLength','includes','matchTo'] </i>
+                                Skips the validations that are executed in event triggers to call the metod validate
+                            </li>
+                            <li>
+                                <b>skipAtEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength','maxLength','includes','matchTo'] </i>
+                                Skips the validations at call the metod validate
+                            </li>
+                            <li>
+                                <b>forceLimits:</b>
+                                <i>[bolean](optional)</i> Force some parameters to match as field needs before
+                                validation.
+                            </li>
+                            <li>
+                                <b>matchTo:</b>
+                                <i>[string](optional)['id:req'/'class:req']</i> Valididate the content of another field
+                                must be the same.
+                            </li>
+                            <li>
+                                <b>matchToText:</b>
+                                <i>[string](mandatory if match to exists)</i> Text to show if no equal to match.
+                            </li>
+                            <li>
+                                <b>toUpperCase:</b>
+                                <i>[boelan](optional)</i> Transform text or content in Uppercase format at keyup.
+                            </li>
+                            <li>
+                                <b>toLowerCase:</b>
+                                <i>[boelan](optional)</i> Transform text or content in Lowercase format at keyup.
+                            </li>
+                            <li>
+                                <b>getDataAs:</b>
+                                <i>[string](optional)</i> Returns the content to main object at change.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <br>
+                <div id="SpaceText"></div>
+                <br>
+                <!-- END TEXT FIELD-->
+
+                <!-- Satrt TEXTAREA FIELD-->
+                <br>
+                <br>
+                <h4 id="CTextArea">Component:Textarea</h4>
+                <hr class="red">
+                <p align="justify">
+                    To build a text form you can see the next example.
+                </p>
+                <pre><code>
+                   {
+                    id: 'textarea',
+                    label: 'texto grande',
+                    class: 'form-control',
+                    type: 'textarea',
+                    rows: 5,
+                    includes: '',
+                    mandatory: true,
+                    unique: true,
+                    name: 'req5',
+                    style: '',
+                    pattern: '',
+                    minLength: 5,
+                    maxLength: 10,
+                    placeholder: 'Mete algo',
+                    options:
+                    {
+                    validateOn: ['keyUp'],
+                    skipUntilEndValidation: ['mandatory'],
+                    skipAtEndValidation: ['pattern'],
+                    forceLimits: true,
+                    toUpperCase: true,
+                    toLowerCase: false
+            }
+    }
+                </code></pre>
+                <br>
+                <br>
+                <ul>
+                    <li><b>id:</b>
+                        <i>[string](optional/Unique)</i> The HTML id for the object in the DOM, This must be UNIQE.
+                    </li>
+                    <li><b>label:</b>
+                        <i>[string](mandatory)</i> The HTML label for this field.
+                    </li>
+                    <li><b>class:</b>
+                        <i>[string](optional)</i> The HTML class for this field.('form-control' must to be used if you
+                        use gob.mx framework)
+                    </li>
+                    <li><b>placeholder:</b>
+                        <i>[number](optional)</i> Text to show in field before you set content
+                    </li>
+                    <li><b>rows:</b>
+                        <i>[number](optional)</i> Number of rows of textarea
+                    </li>
+                    <li><b>placeholder:</b>
+                        <i>[number](optional)</i> Text to show in field before you set content
+                    </li>
+                    <li><b>type:</b>
+                        <i>[string](mandatory)[text,file,password,select,textarea,number]</i> The type of field you want
+                        to build.
+                    </li>
+                    <li><b>includes:</b>
+                        <i>[string](optional)</i> If the text you imput must to include a part of tis value.
+                    </li>
+                    <li><b>mandatory:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is mandatory.
+                    </li>
+                    <li><b>unique:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is unique.
+                    </li>
+                    <li><b>name:</b>
+                        <i>[string](optional)</i> The HTML name for this field
+                    </li>
+                    <li><b>style:</b>
+                        <i>[string](optional)</i> The HTML style for this field
+                    </li>
+                    <li><b>pattern:</b>
+                        <i>[string](optional) [number,alphanumeric,regexp]</i> The HTML style for this field
+                    </li>
+                    <li><b>minLength:</b>
+                        <i>[number](optional) </i> The min length filed must be.
+                    </li>
+                    <li><b>maxLength:</b>
+                        <i>[number](optional) </i> The max length filed must be..
+                    </li>
+                    <li><b>options:</b>
+                        <ul>
+                            <li>
+                                <b>validateOn:</b>
+                                <i>[array](optional)['keyUp','keyDown','Click','Change'] </i> the event or events that
+                                trigger the validation.
+                            </li>
+                            <li>
+                                <b>skipUntilEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength','maxLength','includes','matchTo'] </i>
+                                Skips the validations that are executed in event triggers to call the metod validate
+                            </li>
+                            <li>
+                                <b>skipAtEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength','maxLength','includes','matchTo'] </i>
+                                Skips the validations at call the metod validate
+                            </li>
+                            <li>
+                                <b>forceLimits:</b>
+                                <i>[bolean](optional)</i> Force some parameters to match as field needs before
+                                validation.
+                            </li>
+                            <li>
+                                <b>matchTo:</b>
+                                <i>[string](optional)['id:req'/'class:req']</i> Valididate the content of another field
+                                must be the same.
+                            </li>
+                            <li>
+                                <b>matchToText:</b>
+                                <i>[string](mandatory if match to exists)</i> Text to show if no equal to match.
+                            </li>
+                            <li>
+                                <b>toUpperCase:</b>
+                                <i>[boelan](optional)</i> Transform text or content in Uppercase format at keyup.
+                            </li>
+                            <li>
+                                <b>toLowerCase:</b>
+                                <i>[boelan](optional)</i> Transform text or content in Lowercase format at keyup.
+                            </li>
+                            <li>
+                                <b>getDataAs:</b>
+                                <i>[string](optional)</i> Returns the content to main object at change.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <br>
+                <div id="SpaceTextArea"></div>
+                <br>
+                <!-- END TEXTarea FIELD-->
+                <!-- Satrt Number FIELD-->
+                <br>
+                <br>
+                <h4 id="CNumber">Component:Number </h4>
+                <hr class="red">
+                <p align="justify">
+                    To build a text form you can see the next example.
+                </p>
+                <pre><code>
+                  {
+                    id: 'NumberField',
+                    class: 'form-control',
+                    type: 'number',
+                    label: 'Inserta un numero ',
+                    includes: 3,
+                    mandatory: false,
+                    unique: true,
+                    name: 'NumberField',
+                    style: '',
+                    pattern: '',
+                    minLength: 1,
+                    maxLength: 10,
+                    minNumber: 0,
+                    maxNumber: 100,
+                    numberOfDecimals: 0,
+                    options: {
+                    validateOn: ['Change'],
+                    skipUntilEndValidation: ['mandatory'],
+                    skipAtEndValidation: ['mandatory'],
+                    forceLimits: true,
+                    getDataAs: 'text'
+        }
+    }
+                </code></pre>
+                <br>
+                <br>
+                <ul>
+                    <li><b>id:</b>
+                        <i>[string](optional/Unique)</i> The HTML id for the object in the DOM, This must be UNIQE.
+                    </li>
+                    <li><b>label:</b>
+                        <i>[string](mandatory)</i> The HTML label for this field.
+                    </li>
+                    <li><b>class:</b>
+                        <i>[string](optional)</i> The HTML class for this field.('form-control' must to be used if you
+                        use gob.mx framework)
+                    </li>
+                    <li><b>type:</b>
+                        <i>[string](mandatory)[text,file,password,select,textarea,number]</i> The type of field you want
+                        to build.
+                    </li>
+                    <li><b>includes:</b>
+                        <i>[string](optional)</i> If the text you imput must to include a part of tis value.
+                    </li>
+                    <li><b>mandatory:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is mandatory.
+                    </li>
+                    <li><b>unique:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is unique.
+                    </li>
+                    <li><b>name:</b>
+                        <i>[string](optional)</i> The HTML name for this field
+                    </li>
+                    <li><b>style:</b>
+                        <i>[string](optional)</i> The HTML style for this field
+                    </li>
+                    <li><b>pattern:</b>
+                        <i>[string](optional) [number,alphanumeric,regexp]</i> The HTML style for this field
+                    </li>
+                    <li><b>minLength:</b>
+                        <i>[number](optional) </i> The min legth field must be.
+                    </li>
+                    <li><b>maxLength:</b>
+                        <i>[number](optional) </i> The max legth field must be.
+                    </li>
+                    <li><b>minNumber:</b>
+                        <i>[number](optional) </i> The min number must be.
+                    </li>
+                    <li><b>maxNumber:</b>
+                        <i>[number](optional) </i> The max number must be.
+                    </li>
+                    <li><b>numberOfDecimals:</b>
+                        <i>[number](optional) </i> The max number of number must be.
+                    </li>
+                    <li><b>options:</b>
+                        <ul>
+                            <li>
+                                <b>validateOn:</b>
+                                <i>[array](optional)['keyUp','keyDown','Click','Change'] </i> the event or events that
+                                trigger the validation.
+                            </li>
+                            <li>
+                                <b>skipUntilEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength',
+                                    'maxLength','includes','matchTo','minNumber','maxNumber','numberOfDecimals'] </i>
+                                Skips the validations that are executed in event triggers to call the metod validate
+                            </li>
+                            <li>
+                                <b>skipAtEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength',
+                                    'maxLength','includes','matchTo','minNumber','maxNumber','numberOfDecimals'] </i>
+                                Skips the validations at call the metod validate
+                            </li>
+                            <li>
+                                <b>forceLimits:</b>
+                                <i>[bolean](optional)</i> Force some parameters to match as field needs before
+                                validation.
+                            </li>
+                            <li>
+                                <b>matchTo:</b>
+                                <i>[string](optional)['id:req'/'class:req']</i> Valididate the content of another field
+                                must be the same.
+                            </li>
+
+
+                        </ul>
+                    </li>
+                </ul>
+
+                <br>
+                <div id="SpaceNumber"></div>
+                <br>
+                <br>
+
+
+                <!-- Satrt Password FIELD-->
+                <br>
+                <br>
+                <h4 id="CPassword">Component:Password</h4>
+                <hr class="red">
+                <p align="justify">
+                    To build a text form you can see the next example.
+                </p>
+                <pre><code>
+                   {
+                    id: 'req7',
+                    label: 'Mete el Password',
+                    class: 'form-control',
+                    type: 'password',
+                    mandatory: true,
+                    unique: true,
+                    name: 'req5',
+                    style: '',
+                    minLength: 0,
+                    maxLength: 10,
+                    placeholder: 'Mete algo',
+                    minNumEspChar: 1,
+                    minNumAlph: 1,
+                    minNumNum: 1,
+                    options:
+                    {
+                    disableCopyPaste: true,
+                    validateOn: ['keyUp'],
+                    skipUntilEndValidation: ['mandatory'],
+                    skipAtEndValidation: ['pattern'],
+                    forceLimits: true,
+                    toUpperCase: false,
+                    toLowerCase: true
+                    }
+                    }
+                </code></pre>
+                <br>
+                <br>
+                <ul>
+                    <li><b>id:</b>
+                        <i>[string](optional/Unique)</i> The HTML id for the object in the DOM, This must be UNIQE.
+                    </li>
+                    <li><b>label:</b>
+                        <i>[string](mandatory)</i> The HTML label for this field.
+                    </li>
+                    <li><b>class:</b>
+                        <i>[string](optional)</i> The HTML class for this field.('form-control' must to be used if you
+                        use gob.mx framework)
+                    </li>
+                    <li><b>placeholder:</b>
+                        <i>[number](optional)</i> Text to show in field before you set content
+                    </li>
+
+                    <li><b>placeholder:</b>
+                        <i>[number](optional)</i> Text to show in field before you set content
+                    </li>
+                    <li><b>type:</b>
+                        <i>[string](mandatory)[text,file,password,select,textarea,number]</i> The type of field you want
+                        to build.
+                    </li>
+
+                    <li><b>mandatory:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is mandatory.
+                    </li>
+                    <li><b>unique:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is unique.
+                    </li>
+                    <li><b>name:</b>
+                        <i>[string](optional)</i> The HTML name for this field
+                    </li>
+                    <li><b>style:</b>
+                        <i>[string](optional)</i> The HTML style for this field
+                    </li>
+                    <li><b>pattern:</b>
+                        <i>[string](optional) [number,alphanumeric,regexp]</i> The HTML style for this field
+                    </li>
+                    <li><b>minLength:</b>
+                        <i>[number](optional) </i> The min length filed must be.
+                    </li>
+                    <li><b>maxLength:</b>
+                        <i>[number](optional) </i> The max length filed must be..
+                    </li>
+                    <li><b>minNumEspChar:</b>
+                        <i>[number](optional) </i> The max number of special characters the filed must contains.
+                    </li>
+                    <li><b>minNumAlph:</b>
+                        <i>[number](optional) </i> The max number of alphanumeric the filed must contains.
+                    </li>
+                    <li><b>minNumNum:</b>
+                        <i>[number](optional) </i> The max number of numeric the filed must contains.
+                    </li>
+                    <li><b>options:</b>
+                        <ul>
+                            <li>
+                                <b>validateOn:</b>
+                                <i>[array](optional)['keyUp','keyDown','Click','Change'] </i> the event or events that
+                                trigger the validation.
+                            </li>
+                            <li>
+                                <b>skipUntilEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength','maxLength','includes','matchTo'] </i>
+                                Skips the validations that are executed in event triggers to call the metod validate
+                            </li>
+                            <li>
+                                <b>skipAtEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','minLength','maxLength','includes','matchTo'] </i>
+                                Skips the validations at call the metod validate
+                            </li>
+                            <li>
+                                <b>forceLimits:</b>
+                                <i>[bolean](optional)</i> Force some parameters to match as field needs before
+                                validation.
+                            </li>
+                            <li>
+                                <b>matchTo:</b>
+                                <i>[string](optional)['id:req'/'class:req']</i> Valididate the content of another field
+                                must be the same.
+                            </li>
+                            <li>
+                                <b>matchToText:</b>
+                                <i>[string](mandatory if match to exists)</i> Text to show if no equal to match.
+                            </li>
+                            <li>
+                                <b>toUpperCase:</b>
+                                <i>[boelan](optional)</i> Transform text or content in Uppercase format at keyup.
+                            </li>
+                            <li>
+                                <b>toLowerCase:</b>
+                                <i>[boelan](optional)</i> Transform text or content in Lowercase format at keyup.
+                            </li>
+                            <li>
+                                <b>getDataAs:</b>
+                                <i>[string](optional)</i> Returns the content to main object at change.
+                            </li>
+                            <li>
+                                <b>disableCopyPaste:</b>
+                                <i>[string](optional)</i> Don't allow copy and paste at field.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <br>
+                <div id="SpacePassword"></div>
+                <br>
+                <!-- END password FIELD-->
+
+                <!-- Satrt Password FIELD-->
+                <br>
+                <br>
+                <h4 id="CFile">Component:File</h4>
+                <hr class="red">
+                <p align="justify">
+                    To build a file form you can see the next example.
+                </p>
+                <pre><code>
+                 {
+                    id: 'req1',
+                    label: 'Un requisito',
+                    class: 'form-control',
+                    type: 'file',
+                    maxtam: '1',
+                    accept: '.pdf',
+                    mandatory: true,
+                    unique: true,
+                    name: 'req1',
+                    style: '',
+                    pattern: 'alphanumeric',
+                    attrib: '',
+                    placeholder: 'Inserta Datos ',
+                    options: {
+                    validateOn: ['Change'],
+                    skipUntilEndValidation: ['mandatory'],
+                    getDataAs: 'text'
+                    }
+                    }
+                </code></pre>
+                <br>
+                <br>
+                <ul>
+                    <li><b>id:</b>
+                        <i>[string](optional/Unique)</i> The HTML id for the object in the DOM, This must be UNIQE.
+                    </li>
+                    <li><b>label:</b>
+                        <i>[string](mandatory)</i> The HTML label for this field.
+                    </li>
+                    <li><b>class:</b>
+                        <i>[string](optional)</i> The HTML class for this field.('form-control' must to be used if you
+                        use gob.mx framework)
+                    </li>
+                    <li><b>type:</b>
+                        <i>[string](mandatory)[text,file,password,select,textarea,number]</i> The type of field you want
+                        to build.
+                    </li>
+                    <li><b>maxtam:</b>
+                        <i>[number](mandatory)</i> The max file size accepted.
+                    </li>
+                    <li><b>accept:</b>
+                        <i>[number](mandatory)</i> The format file accepted.
+                    </li>
+                    <li><b>mandatory:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is mandatory.
+                    </li>
+                    <li><b>unique:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is unique.
+                    </li>
+                    <li><b>name:</b>
+                        <i>[string](optional)</i> The HTML name for this field
+                    </li>
+                    <li><b>style:</b>
+                        <i>[string](optional)</i> The HTML style for this field
+                    </li>
+                    <li><b>options:</b>
+                        <ul>
+                            <li>
+                                <b>validateOn:</b>
+                                <i>[array](optional)['keyUp','keyDown','Click','Change'] </i> the event or events that
+                                trigger the validation.
+                            </li>
+                            <li>
+                                <b>skipUntilEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','includes','matchTo'] </i>
+                                Skips the validations that are executed in event triggers to call the metod validate
+                            </li>
+                            <li>
+                                <b>skipAtEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','includes','matchTo'] </i>
+                                Skips the validations at call the metod validate
+                            </li>
+                            <li>
+                                <b>matchTo:</b>
+                                <i>[string](optional)['id:req'/'class:req']</i> Valididate the content of another field
+                                must be the same.
+                            </li>
+                            <li>
+                                <b>matchToText:</b>
+                                <i>[string](mandatory if match to exists)</i> Text to show if no equal to match.
+                            </li>
+                            <li>
+                                <b>getDataAs:</b>
+                                <i>[string](mandatory)[text/b64]</i> Returns the content to main object at change.
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+                <br>
+                <div id="SpaceFile"></div>
+                <br>
+                <!-- END password FIELD-->
+
+
+                <!-- Satrt Select FIELD-->
+                <br>
+                <br>
+                <h4 id="CSelect">Component:Select</h4>
+                <hr class="red">
+                <p align="justify">
+                    To build a file form you can see the next example.
+                </p>
+                <pre><code>
+                 {
+                    id: 'req10',
+                    label: 'Un requisito',
+                    class: 'form-control',
+                    type: 'select',
+                    items: [
+                    {text: 'China'},
+                    {value: 5, text: 'Mexico'},
+                    {value: 3, text: 'Canada'},
+                    {value: 7, text: 'Colombia'},
+                    {value: 6, text: 'USA'},
+                    {value: 8, text: 'Inglaterra'},
+                    {value: 9, text: 'Argentina'}
+                    ],
+                    mandatory: true,
+                    unique: true,
+                    name: 'req10',
+                    style: '',
+                    attrib: '',
+                    options: {
+                    validateOn: ['Change'],
+                    skipUntilEndValidation: ['mandatory'],
+                    getDataAs: 'text'
+                    }
+                    }
+                </code></pre>
+                <br>
+                <br>
+                <ul>
+                    <li><b>id:</b>
+                        <i>[string](optional/Unique)</i> The HTML id for the object in the DOM, This must be UNIQE.
+                    </li>
+                    <li><b>label:</b>
+                        <i>[string](mandatory)</i> The HTML label for this field.
+                    </li>
+                    <li><b>class:</b>
+                        <i>[string](optional)</i> The HTML class for this field.('form-control' must to be used if you
+                        use gob.mx framework)
+                    </li>
+                    <li><b>items:</b>
+                        <i>[arrray](mandatory)</i> Array with elements to select field
+                    </li>
+
+                    <li><b>accept:</b>
+                        <i>[number](mandatory)</i> The format file accepted.
+                    </li>
+                    <li><b>mandatory:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is mandatory.
+                    </li>
+                    <li><b>unique:</b>
+                        <i>[bolean](optional)[true/false]</i> If the field is unique.
+                    </li>
+                    <li><b>name:</b>
+                        <i>[string](optional)</i> The HTML name for this field
+                    </li>
+                    <li><b>style:</b>
+                        <i>[string](optional)</i> The HTML style for this field
+                    </li>
+                    <li><b>options:</b>
+                        <ul>
+                            <li>
+                                <b>validateOn:</b>
+                                <i>[array](optional)['keyUp','keyDown','Click','Change'] </i> the event or events that
+                                trigger the validation.
+                            </li>
+                            <li>
+                                <b>skipUntilEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','includes','matchTo'] </i>
+                                Skips the validations that are executed in event triggers to call the metod validate
+                            </li>
+                            <li>
+                                <b>skipAtEndValidation:</b>
+                                <i>[array](optional)['mandatory','unique','pattern','includes','matchTo'] </i>
+                                Skips the validations at call the metod validate
+                            </li>
+                            <li>
+                                <b>matchTo:</b>
+                                <i>[string](optional)['id:req'/'class:req']</i> Valididate the content of another field
+                                must be the same.
+                            </li>
+                            <li>
+                                <b>matchToText:</b>
+                                <i>[string](mandatory if match to exists)</i> Text to show if no equal to match.
+                            </li>
+                            <li>
+                                <b>getDataAs:</b>
+                                <i>[string](mandatory)[text/value]</i> Returns the content to main object at change.
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+                <br>
+                <div id="SpaceSelect"></div>
+                <br>
+                <!-- END password FIELD-->
+
+                <br>
+                <br>
+                <h4 id="methods">Methods</h4>
+                <hr class="red">
+                <br>
+
+                <h5 id="drawForm">drawForm</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>null</i> iForm.<b>drawForm(</b><i>null</i><b>);</b></p>
+                </div>
+
+                <p align="justify">
+                    This element render the form in the html space designed by you.
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                    none
+                    <br>
+                    <b>Returns:</b>
+                    <br>
+                    null
+                </p>
+                <br>
+
+                <h5 id="drawSubmit">drawSubmit</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>null</i> iForm.<b>drawSubmit(</b><i>[mandatory](string),[mandatory](string),[mandatory](string),[mandatory](bolean)</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This element render the button for the form in the html space designed by you.
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>value: text for sumbit button</li>
+                    <li>class: class for sumbit button</li>
+                    <li>id: id for sumbit button</li>
+                    <li>preventDefault: prevent default to form submit</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                null
+                </p>
+                <br>
+
+                <h5 id="inicialize">inicialize</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>null</i> iForm.<b>inicialize(</b><i>[optional](function)</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function inicialices all the functions for your form.
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>funtion: a callback function that runs at the end of validation inicialization</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                null
+                </p>
+                <br>
+
+                <h5 id="getData">getData</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>mixed</i> iForm.<b>getData(</b><i>[optional]([idex_element_number] | 'class:[classofelement] |
+                        'id:[idofelemtn]' ,[optional](bolean)</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function gets the data from a specific element or all elements in the form.
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>element: the element you want to get data (if empty returns all values)</li>
+                    <li>getAs: the way you want to get data (mandatory if element was set )</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                mixed content as value or JSON
+                </p>
+                <br>
+
+                <h5 id="setData">setData</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>null</i> iForm.<b>setData(</b><i>[optional]([idex_element_number] | 'class:[classofelement] |
+                        'id:[idofelemtn]' ,[optional](mixed)</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function sets a value in an element of form
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>element: the element you want to get data (if empty returns all values)</li>
+                    <li>value: the value you want to set )</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                null
+                </p>
+                <br>
+
+                <h5 id="getAllSelectors">getAllSelectors</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>JSON</i> iForm.<b>getAllSelectors(</b><i>null</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function gets all selectors of the form
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                    none
+                    <br>
+                    <b>Returns:</b>
+                    <br>
+                    An array with all jQuery selectors
+                </p>
+                <br>
+
+                <h5 id="validate">validate</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>JSON</i> iForm.<b>validate(</b><i>null</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function validate all form
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                    none
+                    <br>
+                    <b>Returns:</b>
+                    <br>
+                    A JSON Object with a response and messages about validation
+                </p>
+                <br>
+
+                <h5 id="getFormAsSelector">getFormAsSelector</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>OBJ</i> iForm.<b>getFormAsSelector(</b><i>null</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function returns jQuery Object as selector
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                    none
+                    <br>
+                    <b>Returns:</b>
+                    <br>
+                    A jQuery selector Object of the form
+                </p>
+                <br>
+
+                <h5 id="disableElement">disableElement</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>null</i> iForm.<b>disableElement(</b><i>[mandatory]([idex_element_number] |
+                        'class:[classofelement] |
+                        'id:[idofelemtn]'</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function disables the html element
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>element: the element id class or index to change the property</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                null
+                </p>
+                <br>
+
+                <h5 id="enableElement">enableElement</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>null</i> iForm.<b>enableElement(</b><i>[mandatory]([idex_element_number] |
+                        'class:[classofelement] |
+                        'id:[idofelemtn]'</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function enables the html element
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>element: the element id class or index to change the property</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                null
+                </p>
+                <br>
+
+
+                <h5 id="getElementAsSelector">getElementAsSelector</h5>
+                <hr class="red">
+                <div class="codeJS">
+                    <br>
+                    <p><i>jQuery Object</i> iForm.<b>getElementAsSelector(</b><i>[mandatory]([idex_element_number] |
+                        'class:[classofelement] |
+                        'id:[idofelemtn]'</i><b>);</b>
+                    </p>
+                </div>
+
+                <p align="justify">
+                    This function returns the selector of an element
+                    <br>
+                    <b>Params:</b>
+                    <br>
+                <ul>
+                    <li>element: the element id class or index to change the property</li>
+                </ul>
+                <br>
+                <b>Returns:</b>
+                <br>
+                jQuery Object as Selector
+                </p>
+                <br>
+                <br>
+
+                <h4 id="FullExample">Full Example Demo</h4>
+                <hr class="red">
+                <div id="total"></div>
+                <b>CODE</b>
+                <div class="">
+                    <br>
+                    <pre>
+
+                    <code style="font-size: x-small">
+                          var JSONFORMtotal = JSONFORMText.concat(JSONFORMTextarea);
+                        JSONFORMtotal = JSONFORMtotal.concat(JSONFORMPassword);
+                        JSONFORMtotal = JSONFORMtotal.concat(JSONFORMFile);
+                        JSONFORMtotal = JSONFORMtotal.concat(JSONFORMNumber);
+                        JSONFORMtotal = JSONFORMtotal.concat(JSONFORMSelect);
+                        var Formtotal = new iForm('#total', JSONFORMtotal, Options);
+                        Formtotal.drawForm();
+                        Formtotal.drawSubmit('send', 'btn btn-primary btn-lg btn-block', 'submit', true);
+                        Formtotal.inicialize();
+                        var alldata = Formtotal.getData();
+                        Formtotal.setData('id:NumberField', 9);
+                        var allSelectors = Formtotal.getAllSelectors('id:NumberField', 9);
+                        Formtotal.disableElement('id:NumberField');
+                        var FormAsSelector = Formtotal.getFormAsSelector();
+                        var JSONValidate = {};
+                        $('#submit').click(function () {
+                        JSONValidate = Formtotal.validate();
+                        })
+                    </code></pre>
+
+
+                </div>
+
+
+                <p align="justify">
+                    Open console and see the contetn in next variables
+                <ul>
+                    <li>alldata</li>
+                    <li>allSelectors</li>
+                    <li>FormAsSelector</li>
+                </ul>
+                </p>
+
+                <br>
+                <br>
+                <h4 id="other">Other Components</h4>
+                <hr class="red">
+                <p align="justify">
+                    <b>iForm</b> contains another type of components you can use for ur forms
+                    those components aren't full documented and tested use carefully.
+                <ul>
+                    <li>Range</li>
+                    <li>Time</li>
+                    <li>Date</li>
+                    <li>Email</li>
+                    <li>Color</li>
+                    <li>Checkbox</li>
+                    <li>Radio</li>
+                </ul>
+
+                <br>
+                If u use and improve those components help us to evaluate and inprove our code.
+
+                </p>
+                <br>
+            </div>
+            <div class="columns medium-4">
+                <h4>Menu</h4>
+                <hr class="red">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#dependences">Dependences</a></li>
+                    <li><a href="#getstarted">Getting Started</a></li>
+                    <li><a href="#options">Options</a></li>
+                    <li><a href="#form">Form Components</a></li>
+                    <li>
+                        <ul>
+                            <li><a href="#CText">Component:Text</a></li>
+                            <li><a href="#CTextArea">Component:Text Area</a></li>
+                            <li><a href="#CNumber">Component:Number</a></li>
+                            <li><a href="#CPassword">Component:Password</a></li>
+                            <li><a href="#CFile">Component:File</a></li>
+                            <li><a href="#CSelect">Component:Select</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#methods">Methods</a></li>
+                    <li>
+                        <ul>
+                            <li><a href="#drawForm">drawForm</a></li>
+                            <li><a href="#drawSubmit">drawSubmit</a></li>
+                            <li><a href="#inicialize">inicialize</a></li>
+                            <li><a href="#getData">getData</a></li>
+                            <li><a href="#setData">setData</a></li>
+                            <li><a href="#getAllSelectors">getAllSelectors</a></li>
+                            <li><a href="#getAllSelectors">validate</a></li>
+                            <li><a href="#getFormAsSelector">getFormAsSelector</a></li>
+                            <li><a href="#disableElement">disableElement</a></li>
+                            <li><a href="#enableElement">enableElement</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#FullExample">Full Example Demo</a></li>
+                    <li><a href="#other">Other components</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="foundation/js/vendor/foundation.js"></script>
+<script src="iForm.js?v1.0.0.5"></script>
+<script>
+
+
+    var Options = {
+        formClass: 'form-group',
+        formMethod: 'POST',
+        enctype: 'multipart/form-data',
+        action: '#',
+        separator: '<br><br>',
+        textForSelect: 'Selecciona...',
+        colorRange: '#000',
+        textsErr: {
+            ErrMaxSize: 'El tama&ntilde;o del archivo es mayor a _XX_ MB',
+            ErrFileAccept: 'El formato _XX_ es incorrecto o no es un archivo valido',
+            ErrMandatory: 'Este campo es obligatorio',
+            ErrUnique: 'La informacion  ya se encuentra  en otro campo',
+            ErrPatternAlph: 'Solo se permiten alphanumericos',
+            ErrPatternNumeric: 'Solo se permiten numericos',
+            ErrPattern: 'La informacion  no cincide con el patron',
+            ErrMinLength: 'El contenido por lo menos debe tener _XX_ caracteres de longitud',
+            ErrMaxLength: 'El contenido por lo mucho debe tener _XX_ caracteres de longitud',
+            ErrMinNum: 'El numero es menor a _XX_ ',
+            ErrMaxNum: 'El numero es mayor a  _XX_ ',
+            ErrIncludes: 'El contenido no incluye  _XX_ ',
+            ErrPass: 'El formato de contraseña es incorrecto ',
+        }
+    };
+    var JSONFORMText = [{
+        id: 'reqTexto',
+        label: 'Ingresa un texto',
+        class: '',
+        type: 'text',
+        includes: 'thing',
+        mandatory: true,
+        unique: true,
+        name: 'reqTexto',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 20,
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                forceLimits: true,
+                toUpperCase: true,
+                toLowerCase: false
+            }
+    }];
+    var JSONFORMText2 = [{
+        id: 'reqTexto2',
+        label: 'Ingresa un texto',
+        class: '',
+        tooltip: 'ingresa un txto',
+        type: 'text',
+        includes: 'thing',
+        mandatory: true,
+        unique: true,
+        name: 'reqTexto',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 20,
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                forceLimits: true,
+                toUpperCase: true,
+                toLowerCase: false
+            }
+    }];
+    var FormText = new iForm('#SpaceText', JSONFORMText, Options);
+    FormText.drawForm();
+    FormText.inicialize();
+
+
+    var JSONFORMTextarea = [{
+        id: 'req5',
+        label: 'texto grande',
+
+        type: 'textarea',
+        rows: 5,
+        includes: '',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 10,
+        placeholder: 'Mete algo',
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: true,
+                toLowerCase: false
+            }
+    }];
+    var JSONFORMTextarea2 = [{
+        id: 'req52',
+        label: 'texto grande',
+
+        type: 'textarea',
+        rows: 5,
+        includes: '',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 10,
+        placeholder: 'Mete algo',
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: true,
+                toLowerCase: false
+            }
+    }];
+    var FormTextarea = new iForm('#SpaceTextArea', JSONFORMTextarea, Options);
+    FormTextarea.drawForm();
+    FormTextarea.inicialize();
+
+    var JSONFORMNumber = [{
+        id: 'NumberField',
+
+        type: 'number',
+        label: 'Inserta un numero ',
+        includes: 3,
+        mandatory: false,
+        unique: true,
+        name: 'NumberField',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 10,
+        minNumber: 0,
+        maxNumber: 100,
+        numberOfDecimals: 0,
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            skipAtEndValidation: ['mandatory'],
+            forceLimits: true,
+            getDataAs: 'text'
+        }
+    }];
+    var JSONFORMNumber2 = [{
+        id: 'NumberField2',
+
+        type: 'number',
+        label: 'Inserta un numero ',
+        includes: 3,
+        mandatory: false,
+        unique: true,
+        name: 'NumberField',
+        style: '',
+        pattern: '',
+        minLength: 5,
+        maxLength: 10,
+        minNumber: 0,
+        maxNumber: 100,
+        numberOfDecimals: 0,
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            skipAtEndValidation: ['mandatory'],
+            forceLimits: true,
+            getDataAs: 'text'
+        }
+    }];
+    var FormNumber = new iForm('#SpaceNumber', JSONFORMNumber, Options);
+    FormNumber.drawForm();
+    FormNumber.inicialize();
+
+    var JSONFORMPassword = [{
+        id: 'req7',
+        label: 'Mete el Password',
+
+        type: 'password',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minLength: 0,
+        maxLength: 10,
+        placeholder: 'Mete algo',
+        minNumEspChar: 1,
+        minNumAlph: 1,
+        minNumNum: 1,
+        options:
+            {
+                disableCopyPaste: true,
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: false,
+                toLowerCase: true
+            }
+    }];
+    var JSONFORMPassword2 = [{
+        id: 'req72',
+        label: 'Mete el Password',
+
+        type: 'password',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minLength: 0,
+        maxLength: 10,
+        placeholder: 'Mete algo',
+        minNumEspChar: 1,
+        minNumAlph: 1,
+        minNumNum: 1,
+        options:
+            {
+                disableCopyPaste: true,
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: false,
+                toLowerCase: true
+            }
+    }];
+    var FormPassword = new iForm('#SpacePassword', JSONFORMPassword, Options);
+    FormPassword.drawForm();
+    FormPassword.inicialize();
+
+    var JSONFORMFile = [{
+
+        id: 'req1',
+        label: 'Un requisito',
+        class: 'form-control-file',
+        type: 'file',
+        maxtam: '1',
+        accept: '.pdf',
+        mandatory: true,
+        unique: true,
+        name: 'req1',
+        style: '',
+        pattern: 'alphanumeric',
+        attrib: '',
+        placeholder: 'Inserta Datos ',
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text'
+        }
+
+    }];
+    var JSONFORMFile2 = [{
+
+        id: 'req12',
+        label: 'Un requisito',
+        class: 'form-control-file',
+        type: 'file',
+        maxtam: '1',
+        accept: '.pdf',
+        mandatory: true,
+        unique: true,
+        name: 'req1',
+        style: '',
+        pattern: 'alphanumeric',
+        attrib: '',
+        placeholder: 'Inserta Datos ',
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text'
+        }
+
+    }];
+    var FormFile = new iForm('#SpaceFile', JSONFORMFile, Options);
+    FormFile.drawForm();
+    FormFile.inicialize();
+
+
+    var JSONFORMSelect = [{
+        id: 'req10',//ya
+        label: 'Un requisito',//ya
+
+        type: 'select',
+        items: [
+            {text: 'China'},
+            {value: 5, text: 'Mexico'},
+            {value: 3, text: 'Canada'},
+            {value: 7, text: 'Colombia'},
+            {value: 6, text: 'USA'},
+            {value: 8, text: 'Inglaterra'},
+            {value: 9, text: 'Argentina'}
+        ],
+        mandatory: true,
+        unique: true,
+        name: 'req10',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    }];
+    var JSONFORMSelect2 = [{
+        id: 'req102',//ya
+        label: 'Un requisito',//ya
+
+        type: 'select',
+        items: [
+            {text: 'China'},
+            {value: 5, text: 'Mexico'},
+            {value: 3, text: 'Canada'},
+            {value: 7, text: 'Colombia'},
+            {value: 6, text: 'USA'},
+            {value: 8, text: 'Inglaterra'},
+            {value: 9, text: 'Argentina'}
+        ],
+        mandatory: true,
+        unique: true,
+        name: 'req10',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    }];
+    var FormSelect = new iForm('#SpaceSelect', JSONFORMSelect, Options);
+    FormSelect.drawForm();
+    FormSelect.inicialize();
+
+
+    var JSONFORMtotal = JSONFORMText2.concat(JSONFORMTextarea2);
+    JSONFORMtotal = JSONFORMtotal.concat(JSONFORMPassword2);
+    JSONFORMtotal = JSONFORMtotal.concat(JSONFORMFile2);
+    JSONFORMtotal = JSONFORMtotal.concat(JSONFORMNumber2);
+    JSONFORMtotal = JSONFORMtotal.concat(JSONFORMSelect2);
+    JSONFORMtotal.push({
+        id: 'req78',
+        label: 'Selecciona el valor del rango',
+        type: 'range',
+        name: 'req5',
+        style: '',
+        min: 0,
+        max: 100,
+        options:
+            {
+                validateOn: ['Change'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+            }
+    });
+    JSONFORMtotal.push({
+        id: 'req73',
+        label: 'Mete el tiempo',
+        placeholder: 'Mete el tiempo',
+        class: 'form-control',
+        type: 'time',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minTime: '00:15',
+        maxTime: '18:00',
+        options:
+            {
+                validateOn: ['Change'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+            }
+    });
+    JSONFORMtotal.push({
+        id: 'req70',
+        label: 'Mete la fecha',
+        placeholder: 'Mete el correo',
+        class: 'form-control',
+        type: 'date',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minDate: '2015-05-06',
+        maxDate: '2019-10-12',
+        options:
+            {
+                validateOn: ['Change'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+            }
+    });
+    JSONFORMtotal.push({
+        id: 'req700',
+        label: 'Mete el correo',
+        placeholder: 'Mete el correo',
+        class: 'form-control',
+        type: 'email',
+        mandatory: true,
+        unique: true,
+        name: 'req5',
+        style: '',
+        minLength: 0,
+        maxLength: 10,
+
+        options:
+            {
+                disableCopyPaste: true,
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: false,
+                toLowerCase: true
+            }
+    });
+    JSONFORMtotal.push({
+        id: 'req9',
+        label: 'Selecciona un color',
+        class: 'form-control',
+        type: 'color',
+        mandatory: true,
+        name: 'req95',
+        style: '',
+        options:
+            {
+                validateOn: ['keyUp'],
+                skipUntilEndValidation: ['mandatory'],
+                // skipAtEndValidation: ['pattern'],
+                forceLimits: true,
+                toUpperCase: false,
+                toLowerCase: true
+            }
+    });
+
+    JSONFORMtotal.push({
+        id: 'req10',//ya
+        label: 'Un pais',//ya
+        class: '',//ya
+        type: 'radio',
+        items: [
+            {id: 'sangre', text: 'China'},
+            {value: 5, text: 'Mexico'},
+            {value: 3, text: 'Canada'},
+            {value: 7, text: 'Colombia'},
+            {value: 6, text: 'USA'},
+            {value: 8, text: 'Inglaterra'},
+            {value: 9, text: 'Argentina'}
+        ],
+        itemSepartor: '<br>',
+        mandatory: true,
+        unique: true,
+        name: 'rb1',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    });
+
+    JSONFORMtotal.push({
+        id: 'req105',//ya
+        label: 'Una o muchas inportaciones',//ya
+        class: '',//ya
+        type: 'checkbox',
+        items: [
+            {id: 'oko', text: 'Cebolla'},
+            {value: 5, text: 'pera'},
+            {value: 3, text: 'Chia'},
+            {value: 7, text: 'Manzana'},
+            {value: 6, text: 'limon'},
+            {value: 8, text: 'lechuga'},
+            {value: 9, text: 'Durazno'}
+        ],
+        itemSepartor: '<br>',
+        mandatory: true,
+        unique: true,
+        name: 'ch2',//ya
+        style: '',//ya
+        attrib: '',//ya
+        options: {
+            validateOn: ['Change'],
+            skipUntilEndValidation: ['mandatory'],
+            getDataAs: 'text' //value
+        }
+    });
+
+    var Formtotal = new iForm('#total', JSONFORMtotal, Options);
+    Formtotal.drawForm();
+    Formtotal.drawSubmit('send', 'button success expanded', 'submit', true);
+    Formtotal.inicialize();
+    var alldata = Formtotal.getData();
+    Formtotal.setData('id:NumberField2', 9);
+    var allSelectors = Formtotal.getAllSelectors('id:NumberField2', 9);
+    Formtotal.disableElement('id:NumberField');
+    var FormAsSelector = Formtotal.getFormAsSelector();
+    var JSONValidate = {};
+    $('#submit').click(function () {
+        JSONValidate = Formtotal.validate();
+    })
+
+</script>
+
+</body>
+</html>
